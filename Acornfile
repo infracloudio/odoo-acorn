@@ -6,7 +6,7 @@ services: postgres: {
 }
 
 containers: {
-  oodo: {
+  odoo: {
     image: "odoo:16"
     env: {
       "HOST": "@{services.postgres.address}"
