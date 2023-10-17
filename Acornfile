@@ -1,4 +1,4 @@
-services: mariadb: {
+services: postgres: {
   image: "ghcr.io/acorn-io/postgres:v15.3-0"
   serviceArgs: {
     dbUser: "odoo"
@@ -9,11 +9,11 @@ containers: {
   oodo: {
     image: "odoo:16"
     env: {
-      "HOST": "@{services.mariadb.address}"
-      "USER": "@{services.mariadb.secrets.admin.username}"
-      "PASSWORD": "@{services.mariadb.secrets.admin.password}"
+      "HOST": "@{services.postgres.address}"
+      "USER": "@{services.postgres.secrets.admin.username}"
+      "PASSWORD": "@{services.postgres.secrets.admin.password}"
     }
-    dependsOn: ["mariadb"]
+    dependsOn: ["postgres"]
     ports: publish: "8069/http"
   }
 }
